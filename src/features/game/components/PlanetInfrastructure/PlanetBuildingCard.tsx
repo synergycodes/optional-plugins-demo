@@ -1,12 +1,12 @@
 import IconPopulation from "@/components/icons/IconPopulation";
-import { upgradeBuilding, useGameStore } from "../stores/use-game-store";
+import { upgradeBuilding, useGameStore } from "../../stores/use-game-store";
 
 import IconEnergy from "@/components/icons/IconEnergy";
 import Button from "@/components/button/Button";
-import { getBuildingCost } from "../utils/get-building-cost";
+import { getBuildingCost } from "../../utils/get-building-cost";
 import { useMemo } from "react";
 import IconBuilding from "@/components/icons/IconBuilding";
-import type { InfrastructureType } from "../types";
+import type { InfrastructureType } from "../../types";
 
 type Props = {
   type: InfrastructureType;
