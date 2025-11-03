@@ -1,5 +1,5 @@
 import IconPopulation from "@/components/icons/IconPopulation";
-import { useGameStore } from "../stores/use-game-store";
+import { upgradeBuilding, useGameStore } from "../stores/use-game-store";
 
 import IconEnergy from "@/components/icons/IconEnergy";
 import Button from "@/components/button/Button";
@@ -25,7 +25,10 @@ function PlanetBuildingCard({ type }: Props) {
           {type === "powerPlant" ? "Power plant" : "Residential"}
         </h4>
         <p className="text-xs">{currentLevel} level</p>
-        <Button className="mt-4 mb-4 font-bold">
+        <Button
+          className="mt-4 mb-4 font-bold"
+          onClick={() => upgradeBuilding(type)}
+        >
           <IconBuilding type={type} className="size-6" />
           <span>Upgrade</span>
         </Button>
@@ -36,7 +39,8 @@ function PlanetBuildingCard({ type }: Props) {
         )}
         {cost.population > 0 && (
           <div className="flex gap-2 justify-end items-center text-[#e33131] text-xs">
-            <IconPopulation className="size-4" />-{cost.population}
+            <IconPopulation className="size-4" />
+            Min. {cost.population}
           </div>
         )}
       </div>

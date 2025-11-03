@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import type { PlanetTypes } from "../types";
+import { getBuildingCost } from "../utils/get-building-cost";
 
 type Planet = {
   type: PlanetTypes;
@@ -40,3 +41,35 @@ export const useGameStore = create<GameStore>()(
     { name: "gameStore" }
   )
 );
+
+export const upgradeBuilding = (infrastructureType: string) => {
+  const store = useGameStore.getState();
+  const level = store.planet.buildings[infrastructureType] || 0;
+
+  const cost = getBuildingCost(infrastructureType, level + 1);
+
+  const canUpgrade =
+    store.planet.energy > cost.energy &&
+    store.planet.population > cost.population;
+
+  if (!canUpgrade) {
+    alert("Not enough resources.");
+
+    return;
+  }
+
+  useGameStore.setState((state) => ({
+    planet: {
+      ...state.planet,
+      energy: state.planet.energy - cost.energy,
+      population:
+        infrastructureType === "house"
+          ? state.planet.population + 10
+          : state.planet.population,
+      buildings: {
+        ...state.planet.buildings,
+        [infrastructureType]: level + 1,
+      },
+    },
+  }));
+};
