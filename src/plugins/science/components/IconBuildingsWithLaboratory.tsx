@@ -9,7 +9,6 @@ type Props = {
 };
 
 function IconBuildingsWithLaboratory({ props, component: Component }: Props) {
-  console.log(props);
   if (props.type === "laboratory") {
     return <IconBuildingLaboratory {...props} />;
   }

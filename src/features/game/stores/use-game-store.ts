@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import type { PlanetTypes } from "../types";
+import type { PlanetTypes, Resources } from "../types";
 import { getBuildingCost } from "../utils/get-building-cost";
 import { getBuildingEffects } from "../utils/get-building-effects";
 import { roundWithPrecision } from "@/utils/round-with-precision";
@@ -26,7 +26,7 @@ const emptyStore: GameStore = {
   planet: {
     type: 1,
     name: "Earth",
-    energy: 120,
+    energy: 230,
     population: 5,
     buildings: {
       powerPlant: 1,
@@ -46,22 +46,24 @@ const updateStateForTicks = (ticksCount: number) => {
   const store = useGameStore.getState();
   const lastTickNow = store.planet.lastTick + tickEveryXSeconds * 1000;
 
-  const powerPlant = getBuildingEffects(
-    "powerPlant",
-    store.planet.buildings.powerPlant
-  );
-  const house = getBuildingEffects(
-    "powerPlant",
-    store.planet.buildings.powerPlant
+  const buildingsBuff = Object.entries(store.planet.buildings).reduce(
+    (stack: Resources, [infrastructureType, level]) => {
+      const effect = getBuildingEffects(infrastructureType, level);
+
+      stack.energy = stack.energy + effect.energy;
+      stack.population = stack.population + effect.population;
+
+      return stack;
+    },
+    { energy: 0, population: 0 }
   );
 
-  const energyNow = roundWithPrecision(
-    store.planet.energy + ticksCount * (powerPlant.energy + house.energy),
-    1
-  );
+  const energyToAdd = ticksCount * buildingsBuff.energy;
+  const populationToAdd = ticksCount * buildingsBuff.population;
+
+  const energyNow = roundWithPrecision(store.planet.energy + energyToAdd, 1);
   const populationNow = roundWithPrecision(
-    store.planet.population +
-      ticksCount * (powerPlant.population + house.population),
+    store.planet.population + populationToAdd,
     0
   );
 
