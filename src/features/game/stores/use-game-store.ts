@@ -81,9 +81,6 @@ const tick = () => {
   const timePassedInSeconds = (Date.now() - store.planet.lastTick) / 1000;
   const ticksCount = Math.floor(timePassedInSeconds / tickEveryXSeconds);
 
-  console.log("timePassedInSeconds", timePassedInSeconds);
-  console.log("ticksCount", ticksCount);
-
   updateStateForTicks(ticksCount);
 };
 
@@ -118,7 +115,7 @@ export const upgradeBuilding = (infrastructureType: string) => {
   useGameStore.setState((state) => ({
     planet: {
       ...state.planet,
-      energy: state.planet.energy - cost.energy,
+      energy: roundWithPrecision(state.planet.energy - cost.energy, 1),
       population:
         infrastructureType === "house"
           ? state.planet.population + 5

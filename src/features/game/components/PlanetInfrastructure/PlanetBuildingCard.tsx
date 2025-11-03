@@ -14,7 +14,9 @@ type Props = {
 };
 
 function PlanetBuildingCard({ type, title }: Props) {
-  const currentLevel = useGameStore((store) => store.planet.buildings[type]);
+  const currentLevel = useGameStore(
+    (store) => store.planet.buildings[type] || 0
+  );
 
   const cost = useMemo(() => {
     return getBuildingCost(type, currentLevel + 1);
@@ -30,7 +32,7 @@ function PlanetBuildingCard({ type, title }: Props) {
           onClick={() => upgradeBuilding(type)}
         >
           <IconBuilding type={type} className="size-6" />
-          <span>Upgrade</span>
+          <span>{currentLevel > 0 ? "Upgrade" : "Build"}</span>
         </Button>
         {cost.energy > 0 && (
           <div className="flex gap-2 justify-end items-center text-[#ecaa2f] text-xs">

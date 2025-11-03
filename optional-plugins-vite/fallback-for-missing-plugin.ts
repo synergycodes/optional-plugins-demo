@@ -8,9 +8,13 @@ export function fallbackForMissingPlugin(): {
   return {
     name: "fallback-for-missing-plugin",
     async resolveId(source) {
-      const match = source.match(/app\/plugins\/(.*)?$/);
+      // const match = source.includes(/src\/plugins\/(.*)?$/);
+      const isPluginPath = source
+        .replaceAll("\\", "/")
+        .replaceAll("//", "/")
+        .includes("src/plugins");
 
-      if (match) {
+      if (isPluginPath) {
         const realPath = path.resolve(import.meta.dirname, "src", source);
 
         const doesFileExist = [`${realPath}.ts`, `${realPath}.tsx`].some(
@@ -27,10 +31,7 @@ export function fallbackForMissingPlugin(): {
               ""
             )}`
           );
-          return path.resolve(
-            import.meta.dirname,
-            "src/app/features/plugins/utils/missing-plugin.stub.ts"
-          );
+          return path.resolve(import.meta.dirname, "./missing-plugin.stub.ts");
         }
       }
       return null;

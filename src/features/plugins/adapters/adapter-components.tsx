@@ -86,7 +86,7 @@ export function withOptionalComponentPlugins<TProps extends object>(
       }
 
       if (place === "after") {
-        resultBefore.push(<plugin.content />);
+        resultAfter.push(<plugin.content />);
       }
     }
 
