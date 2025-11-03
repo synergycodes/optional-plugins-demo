@@ -1,2 +1,3 @@
-// eslint-disable-next-line no-restricted-imports
+/* eslint-disable no-restricted-imports */
+
 import "@/plugins/science/plugin-functions";
