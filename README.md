@@ -5,11 +5,13 @@ This demo showcases optional plugins developed by Synergy Codes for [Workflow Bu
 ## Main features
 
 - Allows users to create plugins in the plugin directory and remove them without breaking the app
-- Vite serves stubs for removed plugins
+- Vite serves stubs for removed plugins (there is a log in the console when it is served)
 - ESLint warns users that they cannot import files directly from @/plugins and must use adapters
 - Plugins can modify the base code, alter function inputs and outputs, add hooks, and customize prompts
+- Plugins have an additional parameter `priority`, allowing the user to define which plugin should be applied first
 
 ## Plugins logic
 
 - `./src/plugins/` - directory with removable content
 - `./src/features/plugins` - is a core functionality `src/features/plugins/components.ts` and `src/features/plugins/functions.ts` are places where plugins are added to the app
+
