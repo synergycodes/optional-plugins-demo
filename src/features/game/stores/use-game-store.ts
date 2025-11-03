@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import type { PlanetTypes } from "../types";
 import { getBuildingCost } from "../utils/get-building-cost";
+import { getBuildingEffects } from "../utils/get-building-effects";
+import { roundWithPrecision } from "@/utils/round-with-precision";
 
 type Planet = {
   type: PlanetTypes;
@@ -13,6 +15,7 @@ type Planet = {
     house: number;
     [type: string]: number;
   };
+  lastTick: number;
 };
 
 type GameStore = {
@@ -29,8 +32,62 @@ const emptyStore: GameStore = {
       powerPlant: 1,
       house: 1,
     },
+    lastTick: Date.now(),
   },
 };
+
+const tickEveryXSeconds = 3;
+
+const updateStateForTicks = (ticksCount: number) => {
+  if (ticksCount < 1) {
+    return;
+  }
+
+  const store = useGameStore.getState();
+  const lastTickNow = store.planet.lastTick + tickEveryXSeconds * 1000;
+
+  const powerPlant = getBuildingEffects(
+    "powerPlant",
+    store.planet.buildings.powerPlant
+  );
+  const house = getBuildingEffects(
+    "powerPlant",
+    store.planet.buildings.powerPlant
+  );
+
+  const energyNow = roundWithPrecision(
+    store.planet.energy + ticksCount * (powerPlant.energy + house.energy),
+    1
+  );
+  const populationNow = roundWithPrecision(
+    store.planet.population +
+      ticksCount * (powerPlant.population + house.population),
+    0
+  );
+
+  useGameStore.setState((state) => ({
+    planet: {
+      ...state.planet,
+      energy: energyNow,
+      population: populationNow,
+      lastTick: lastTickNow,
+    },
+  }));
+};
+
+const tick = () => {
+  const store = useGameStore.getState();
+
+  const timePassedInSeconds = (Date.now() - store.planet.lastTick) / 1000;
+  const ticksCount = Math.floor(timePassedInSeconds / tickEveryXSeconds);
+
+  console.log("timePassedInSeconds", timePassedInSeconds);
+  console.log("ticksCount", ticksCount);
+
+  updateStateForTicks(ticksCount);
+};
+
+setInterval(tick, 1000);
 
 export const useGameStore = create<GameStore>()(
   devtools(
@@ -64,7 +121,7 @@ export const upgradeBuilding = (infrastructureType: string) => {
       energy: state.planet.energy - cost.energy,
       population:
         infrastructureType === "house"
-          ? state.planet.population + 10
+          ? state.planet.population + 5
           : state.planet.population,
       buildings: {
         ...state.planet.buildings,

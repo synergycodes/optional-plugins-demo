@@ -26,8 +26,8 @@ function PlanetDashboard() {
           </span>
         </div>
         <div className="mt-8 flex gap-12">
-          <PlanetBuildingCard type="powerPlant" />
-          <PlanetBuildingCard type="house" />
+          <PlanetBuildingCard type="powerPlant" title="Power plant" />
+          <PlanetBuildingCard type="house" title="Residential" />
         </div>
       </div>
     </div>

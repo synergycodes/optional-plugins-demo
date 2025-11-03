@@ -6,12 +6,14 @@ import Button from "@/components/button/Button";
 import { getBuildingCost } from "../utils/get-building-cost";
 import { useMemo } from "react";
 import IconBuilding from "@/components/icons/IconBuilding";
+import type { InfrastructureType } from "../types";
 
 type Props = {
-  type: "powerPlant" | "house";
+  type: InfrastructureType;
+  title: string;
 };
 
-function PlanetBuildingCard({ type }: Props) {
+function PlanetBuildingCard({ type, title }: Props) {
   const currentLevel = useGameStore((store) => store.planet.buildings[type]);
 
   const cost = useMemo(() => {
@@ -21,9 +23,7 @@ function PlanetBuildingCard({ type }: Props) {
   return (
     <>
       <div className="flex flex-col gap-2">
-        <h4 className="text-xs font-semibold">
-          {type === "powerPlant" ? "Power plant" : "Residential"}
-        </h4>
+        <h4 className="text-xs font-semibold">{title}</h4>
         <p className="text-xs">{currentLevel} level</p>
         <Button
           className="mt-4 mb-4 font-bold"
