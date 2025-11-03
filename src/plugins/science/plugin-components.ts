@@ -3,4 +3,5 @@ import LaboratoryCard from "./components/LaboratoryCard";
 
 registerComponentDecorator('OptionalBuildingCards', {
   content: LaboratoryCard,
+  place: 'after'
 });

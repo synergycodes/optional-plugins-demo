@@ -27,6 +27,6 @@
       "@/*": ["./src/*", "./src/*/index"]
     }
   },
-  "include": ["src"]
+  "include": ["src", "optional-plugins-vite/fallback-for-missing-plugin.ts", "optional-plugins-vite/fallback-for-missing-plugin.ts"]
 }
 
