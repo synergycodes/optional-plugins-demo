@@ -1,3 +1,4 @@
+import { withOptionalComponentPlugins } from "@/features/plugins/adapters/adapter-components";
 import IconBuildingPowerPlant from "./IconBuildingPowerPlant";
 import IconBuildingResidential from "./IconBuildingResidential";
 
@@ -22,4 +23,6 @@ const Icon = ({ className, type }: Props) => {
   return <IconForType className={className} />;
 };
 
-export default Icon;
+const IconBuilding = withOptionalComponentPlugins(Icon, "IconBuilding");
+
+export default IconBuilding;
