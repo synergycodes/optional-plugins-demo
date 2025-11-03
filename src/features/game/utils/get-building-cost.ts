@@ -3,7 +3,7 @@ import type { Resources } from "../types";
 const buildingCostByType: {
   [type: string]: Resources;
 } = {
-  powerPlant: { energy: 80, population: 5 },
+  powerPlant: { energy: 30, population: 1 },
   house: { energy: 20, population: 0 },
 };
 

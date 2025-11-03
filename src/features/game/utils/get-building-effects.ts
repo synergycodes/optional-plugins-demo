@@ -3,8 +3,8 @@ import type { InfrastructureType, Resources } from "../types";
 const buildingCostByType: {
   [key in InfrastructureType]: Resources;
 } = {
-  powerPlant: { energy: 10, population: 0 },
-  house: { energy: 0, population: 0 },
+  powerPlant: { energy: 3.1, population: 0 },
+  house: { energy: -0.1, population: 0 },
 };
 
 export const getBuildingEffects = (
