@@ -1,3 +1,6 @@
 export type PlanetTypes = 1 | 2 | 3;
 
-export type BuildingCost = { energy: number; population: number };
+// String with autocomplete
+export type InfrastructureType ='powerPlant' | 'house' | string & {}
+
+export type Resources = { energy: number; population: number };

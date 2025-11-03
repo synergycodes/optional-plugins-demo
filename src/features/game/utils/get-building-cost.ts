@@ -1,19 +1,19 @@
-import type { BuildingCost } from "../types";
+import type { Resources } from "../types";
 
 const buildingCostByType: {
-  [type: string]: { energy: number; population: number };
+  [type: string]: Resources;
 } = {
-  powerPlant: { energy: 100, population: 5 },
-  house: { energy: 50, population: 0 },
+  powerPlant: { energy: 80, population: 5 },
+  house: { energy: 20, population: 0 },
 };
 
 export const getBuildingCost = (
-  buildingType: string,
+  infrastructureType: string,
   level: number
-): BuildingCost => {
-  const levelCost = buildingCostByType[buildingType] || {
-    energy: 20,
-    population: 1,
+): Resources => {
+  const levelCost = buildingCostByType[infrastructureType] || {
+    energy: 40,
+    population: 3,
   };
 
   return {
