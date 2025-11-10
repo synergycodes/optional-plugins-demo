@@ -1,0 +1,10 @@
+{
+  "building.level": "Level {{level}}",
+  "building.powerPlant": "Power plant",
+  "building.house": "Residential sector",
+  "building.upgrade": "Upgrade",
+  "building.build": "Build",
+  "building.min": "Min.",
+  "building.effects": "Effects",
+  "building.day": "day"
+}

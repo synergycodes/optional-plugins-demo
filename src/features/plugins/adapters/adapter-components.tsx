@@ -3,17 +3,18 @@ import { sortByPriority } from "./utils/sort-by-priority";
 
 type ModifyProps<P> = (props: P) => P;
 
-type DecoratorWithContent<Props = object> = {
+type SharedDecoratorOptions<Props = object> = {
   modifyProps?: ModifyProps<Props>;
-  place?: "before" | "after" | "wrapper";
   priority?: number;
-  content: React.ElementType;
+  name?: string;
 };
 
-type DecoratorWithNoContent<Props = object> = {
-  modifyProps?: ModifyProps<Props>;
-  priority?: number;
-};
+type DecoratorWithContent<Props = object> = {
+  place?: "before" | "after" | "wrapper";
+  content: React.ElementType;
+} & SharedDecoratorOptions<Props>;
+
+type DecoratorWithNoContent<Props = object> = SharedDecoratorOptions<Props>;
 
 type ComponentDecoratorOptions<Props = object> =
   | DecoratorWithContent<Props>
@@ -33,7 +34,21 @@ export function registerComponentDecorator<P>(
     pluginRegistryComponents.set(componentName, []);
   }
 
-  pluginRegistryComponents.get(componentName)!.push(plugin);
+  pluginRegistryComponents.get(componentName)!.push({
+    ...plugin,
+    name:
+      plugin.name ??
+      ((plugin as DecoratorWithContent)?.content as { name: string })?.name,
+  });
+}
+
+export function hasRegisteredComponentDecorator(
+  componentName: string,
+  pluginName: string
+) {
+  return pluginRegistryComponents
+    .get(componentName)
+    ?.some((plugin) => plugin.name === pluginName);
 }
 
 export function withOptionalComponentPlugins<TProps extends object>(
@@ -79,14 +94,18 @@ export function withOptionalComponentPlugins<TProps extends object>(
 
       if (place === "wrapper") {
         resultWrapper = (
-          <plugin.content props={modifiedProps} component={Component}>
+          <plugin.content
+            key={index}
+            props={modifiedProps}
+            component={Component}
+          >
             {resultWrapper}
           </plugin.content>
         );
       }
 
       if (place === "after") {
-        resultAfter.push(<plugin.content />);
+        resultAfter.push(<plugin.content key={index} />);
       }
     }
 

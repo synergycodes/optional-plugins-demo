@@ -3,10 +3,10 @@ import PlanetBuildingCard from "./PlanetBuildingCard";
 
 function PlanetInfrastructure() {
   return (
-    <div className="mt-8 flex gap-12">
+    <div className="mt-8 flex gap-6">
       <OptionalBuildingCards>
-        <PlanetBuildingCard type="powerPlant" title="Power plant" />
-        <PlanetBuildingCard type="house" title="Residential" />
+        <PlanetBuildingCard type="powerPlant" />
+        <PlanetBuildingCard type="house" />
       </OptionalBuildingCards>
     </div>
   );

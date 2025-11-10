@@ -11,7 +11,6 @@ function LaboratoryCard() {
       // Science effect increases when power plant level changes 
       key={powerPlantLevel}
       type="laboratory"
-      title="Laboratory"
     />
   );
 }

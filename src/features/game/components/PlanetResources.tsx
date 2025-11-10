@@ -8,7 +8,7 @@ function PlanetResources() {
 
   return (
     <div className="flex gap-5">
-      <span className="flex gap-2 text-[#ecaa2f]">
+      <span className="flex gap-2 text-[#fcbe4a]">
         <IconEnergy className="size-6" />
         {energy}
       </span>
