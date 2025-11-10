@@ -1,13 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
+
 import App from "./App.tsx";
+
 // Plugins entry point
-import '@/features/plugins';
+import "@/features/plugins";
+import "@/features/i18n";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <App />
   </StrictMode>
 );
-

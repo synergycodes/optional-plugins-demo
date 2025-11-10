@@ -19,8 +19,8 @@ export const getScienceBuildingEffects = ({ params }: DecoratorParams) => {
         powerPlantLevel
       );
 
-      // 1 +25% buff, 2 +50% buff etc.
-      const scienceBuff = laboratoryLevel * 0.25;
+      // 1 +7.5% buff, 2 +15% buff etc.
+      const scienceBuff = laboratoryLevel * 0.075;
 
       return {
         replacedReturn: {

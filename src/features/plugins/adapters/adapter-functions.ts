@@ -4,11 +4,15 @@ type CallbackBefore = (params: {
   params: unknown[];
 }) => void | { replacedParams: unknown[] };
 
-type DecoratorOptionsBefore = {
+type SharedDecoratorOptions = {
   priority?: number;
+  name?: string;
+};
+
+type DecoratorOptionsBefore = {
   place?: "before";
   callback: CallbackBefore;
-};
+} & SharedDecoratorOptions;
 
 type CallbackAfter = (params: {
   params: unknown[];
@@ -16,10 +20,9 @@ type CallbackAfter = (params: {
 }) => void | { replacedReturn: unknown };
 
 type DecoratorOptionsAfter = {
-  priority?: number;
   place: "after";
   callback: CallbackAfter;
-};
+} & SharedDecoratorOptions;
 
 type CallbackDecoratorOptions = DecoratorOptionsBefore | DecoratorOptionsAfter;
 
@@ -33,7 +36,10 @@ export function registerFunctionDecorator(
     pluginRegistryCallbacks.set(functionName, []);
   }
 
-  pluginRegistryCallbacks.get(functionName)!.push(plugin);
+  pluginRegistryCallbacks.get(functionName)!.push({
+    ...plugin,
+    name: plugin.name ?? plugin.callback.name,
+  });
 }
 
 export function withOptionalFunctionPlugins<

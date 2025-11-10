@@ -1,0 +1,10 @@
+{
+  "building.level": "Poziom {{level}}",
+  "building.powerPlant": "Elektrownia",
+  "building.house": "Sektor mieszkalny",
+  "building.upgrade": "Ulepsz",
+  "building.build": "Buduj",
+  "building.min": "Min.",
+  "building.effects": "Efekty",
+  "building.day": "dzień"
+}
