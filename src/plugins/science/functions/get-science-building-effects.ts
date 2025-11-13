@@ -19,8 +19,9 @@ export const getScienceBuildingEffects = ({ params }: DecoratorParams) => {
         powerPlantLevel
       );
 
-      // 1 +7.5% buff, 2 +15% buff etc.
-      const scienceBuff = laboratoryLevel * 0.075;
+      // Efficiency can never be higher than 100% for a power plant.
+      // 1 / 21 -> 0.05, 2 / 22 -> 0.(09), 3 -> 3 / 23 -> 0.13, 4 -> 4 / 24 -> 0.16
+      const scienceBuff = laboratoryLevel / (laboratoryLevel + 20);
 
       return {
         replacedReturn: {
