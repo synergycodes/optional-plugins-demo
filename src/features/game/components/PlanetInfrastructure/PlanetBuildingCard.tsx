@@ -31,7 +31,7 @@ function PlanetBuildingCard({ type }: Props) {
     return getBuildingEffects(type, currentLevel);
   }, [currentLevel, type]);
 
-  const canBeBuild = energy > cost.energy && population >= cost.population;
+  const canBeBuild = energy >= cost.energy && population >= cost.population;
 
   return (
     <>

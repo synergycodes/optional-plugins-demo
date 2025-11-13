@@ -1,11 +1,11 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-import type { PlanetTypes, Resources } from "../types";
+import type { PlanetTypes } from "../types";
 import { getBuildingCost } from "../utils/get-building-cost";
-import { getBuildingEffects } from "../utils/get-building-effects";
 import { roundWithPrecision } from "@/utils/round-with-precision";
+import { getPlanetEffects } from "../utils/get-planet-effects";
 
-type Planet = {
+export type Planet = {
   type: PlanetTypes;
   name: string;
   energy: number;
@@ -36,7 +36,7 @@ const emptyStore: GameStore = {
   },
 };
 
-const tickEveryXSeconds = 3;
+const tickEveryXSeconds = 1.2;
 
 const updateStateForTicks = (ticksCount: number) => {
   if (ticksCount < 1) {
@@ -46,17 +46,7 @@ const updateStateForTicks = (ticksCount: number) => {
   const store = useGameStore.getState();
   const lastTickNow = store.planet.lastTick + tickEveryXSeconds * 1000;
 
-  const buildingsBuff = Object.entries(store.planet.buildings).reduce(
-    (stack: Resources, [infrastructureType, level]) => {
-      const effect = getBuildingEffects(infrastructureType, level);
-
-      stack.energy = stack.energy + effect.energy;
-      stack.population = stack.population + effect.population;
-
-      return stack;
-    },
-    { energy: 0, population: 0 }
-  );
+  const buildingsBuff = getPlanetEffects(store.planet);
 
   const energyToAdd = ticksCount * buildingsBuff.energy;
   const populationToAdd = ticksCount * buildingsBuff.population;
@@ -105,8 +95,8 @@ export const upgradeBuilding = (infrastructureType: string) => {
   const cost = getBuildingCost(infrastructureType, level + 1);
 
   const canUpgrade =
-    store.planet.energy > cost.energy &&
-    store.planet.population > cost.population;
+    store.planet.energy >= cost.energy &&
+    store.planet.population >= cost.population;
 
   if (!canUpgrade) {
     alert("Not enough resources.");
