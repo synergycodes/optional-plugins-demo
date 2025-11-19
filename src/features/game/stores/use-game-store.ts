@@ -1,8 +1,10 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
+
+import { roundWithPrecision } from "@/utils/round-with-precision";
+
 import type { PlanetTypes } from "../types";
 import { getBuildingCost } from "../utils/get-building-cost";
-import { roundWithPrecision } from "@/utils/round-with-precision";
 import { getPlanetEffects } from "../utils/get-planet-effects";
 
 export type Planet = {
@@ -54,7 +56,7 @@ const updateStateForTicks = (ticksCount: number) => {
   const energyNow = roundWithPrecision(store.planet.energy + energyToAdd, 1);
   const populationNow = roundWithPrecision(
     store.planet.population + populationToAdd,
-    0
+    0,
   );
 
   useGameStore.setState((state) => ({
@@ -83,9 +85,9 @@ export const useGameStore = create<GameStore>()(
     () =>
       ({
         ...emptyStore,
-      } satisfies GameStore),
-    { name: "gameStore" }
-  )
+      }) satisfies GameStore,
+    { name: "gameStore" },
+  ),
 );
 
 export const upgradeBuilding = (infrastructureType: string) => {

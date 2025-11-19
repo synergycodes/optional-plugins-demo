@@ -1,11 +1,16 @@
-import { type Config } from "prettier";
-
-const config: Config = {
+/**
+ * @see https://prettier.io/docs/configuration
+ * @type {import("prettier").Config}
+ */
+const config = {
   importOrder: [
     "<THIRD_PARTY_MODULES>",
+    "^@/utils/(.*)$",
+    "^@/features/plugins-core(.*)$",
     "^@/features/(.*)$",
     "^@/plugins/(.*)$",
     "^@/(.*)$",
+    "^[../]",
     "^[./]",
   ],
   importOrderSeparation: true,

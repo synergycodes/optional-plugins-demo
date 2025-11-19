@@ -1,4 +1,5 @@
 import IconPlanet from "@/components/icons/IconPlanet";
+
 import { useGameStore } from "../stores/use-game-store";
 
 function Planet() {

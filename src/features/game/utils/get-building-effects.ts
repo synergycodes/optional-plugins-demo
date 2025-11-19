@@ -1,4 +1,5 @@
 import { withOptionalFunctionPlugins } from "@/features/plugins-core/adapters/adapter-functions";
+
 import type { InfrastructureType, Resources } from "../types";
 
 const buildingCostByType: {
@@ -10,7 +11,7 @@ const buildingCostByType: {
 
 const getBuildingEffectsFunction = (
   infrastructureType: InfrastructureType,
-  level: number
+  level: number,
 ): Resources => {
   const levelCost = buildingCostByType[infrastructureType] || {
     energy: 0,
@@ -25,5 +26,5 @@ const getBuildingEffectsFunction = (
 
 export const getBuildingEffects = withOptionalFunctionPlugins(
   getBuildingEffectsFunction,
-  "getBuildingEffects"
+  "getBuildingEffects",
 );

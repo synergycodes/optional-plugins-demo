@@ -1,8 +1,8 @@
-import Button from "@/components/button/Button";
-import IconLanguage from "@/components/icons/IconLanguage";
-
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
+
+import Button from "@/components/button/Button";
+import IconLanguage from "@/components/icons/IconLanguage";
 
 type Props = {
   className?: string;

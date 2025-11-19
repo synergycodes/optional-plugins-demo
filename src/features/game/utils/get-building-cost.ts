@@ -9,7 +9,7 @@ const buildingCostByType: {
 
 export const getBuildingCost = (
   infrastructureType: string,
-  level: number
+  level: number,
 ): Resources => {
   const levelCost = buildingCostByType[infrastructureType] || {
     energy: 30,
@@ -21,11 +21,11 @@ export const getBuildingCost = (
   return {
     energy: Math.ceil(
       levelCost.energy * level +
-        (levelCost.energy ^ (levelCost.energy * levelImpact))
+        (levelCost.energy ^ (levelCost.energy * levelImpact)),
     ),
     population: Math.ceil(
       levelCost.population * level +
-        (levelCost.population ^ (levelCost.population * levelImpact))
+        (levelCost.population ^ (levelCost.population * levelImpact)),
     ),
   };
 };

@@ -1,7 +1,9 @@
-import Button from "@/components/button/Button";
-import IconPencil from "./icons/IconPencil";
 import { useGameStore } from "@/features/game/stores/use-game-store";
+
+import Button from "@/components/button/Button";
+
 import { setNewPlanetName } from "../actions/set-new-planet-name";
+import IconPencil from "./icons/IconPencil";
 
 function EditPlanetName() {
   const name = useGameStore((store) => store.planet.name);

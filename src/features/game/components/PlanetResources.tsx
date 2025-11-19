@@ -1,9 +1,12 @@
-import IconPopulation from "@/components/icons/IconPopulation";
-import IconEnergy from "@/components/icons/IconEnergy";
-import { useGameStore } from "../stores/use-game-store";
 import { useMemo } from "react";
-import { getPlanetEffects } from "../utils/get-planet-effects";
+
 import { cn } from "@/utils/cn";
+
+import IconEnergy from "@/components/icons/IconEnergy";
+import IconPopulation from "@/components/icons/IconPopulation";
+
+import { useGameStore } from "../stores/use-game-store";
+import { getPlanetEffects } from "../utils/get-planet-effects";
 
 function PlanetResources() {
   const planet = useGameStore((store) => store.planet);
@@ -21,7 +24,7 @@ function PlanetResources() {
           className={cn(
             "flex flex-col gap-1",
             "min-w-[100px]",
-            "text-[#fcbe4a] text-right"
+            "text-[#fcbe4a] text-right",
           )}
         >
           <div className="flex gap-2 justify-between">

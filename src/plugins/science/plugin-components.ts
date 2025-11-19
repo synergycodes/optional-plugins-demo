@@ -1,6 +1,7 @@
 import { registerComponentDecorator } from "@/features/plugins-core/adapters/adapter-components";
-import LaboratoryCard from "./components/LaboratoryCard";
+
 import IconBuildingsWithLaboratory from "./components/IconBuildingsWithLaboratory";
+import LaboratoryCard from "./components/LaboratoryCard";
 
 registerComponentDecorator("OptionalBuildingCards", {
   content: LaboratoryCard,

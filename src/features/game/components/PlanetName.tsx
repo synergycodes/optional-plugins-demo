@@ -1,4 +1,5 @@
 import { withOptionalComponentPlugins } from "@/features/plugins-core/adapters/adapter-components";
+
 import { useGameStore } from "../stores/use-game-store";
 
 function PlanetNameComponent() {
@@ -9,7 +10,7 @@ function PlanetNameComponent() {
 
 const PlanetName = withOptionalComponentPlugins(
   PlanetNameComponent,
-  "PlanetName"
+  "PlanetName",
 );
 
 export default PlanetName;

@@ -1,4 +1,5 @@
 import IconBuilding from "@/components/icons/IconBuilding";
+
 import IconBuildingLaboratory from "./icons/IconBuildingLaboratory";
 
 type IconBuildingProps = React.ComponentProps<typeof IconBuilding>;
