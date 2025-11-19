@@ -13,5 +13,5 @@ This demo showcases optional plugins developed by Synergy Codes for [Workflow Bu
 ## Plugins logic
 
 - `./src/plugins/` - directory with removable content
-- `./src/features/plugins` - is a core functionality `src/features/plugins/components.ts` and `src/features/plugins/functions.ts` are places where plugins are added to the app
+- `./src/features/plugins-core` - is a core functionality `src/features/plugins-core/components.ts` and `src/features/plugins-core/functions.ts` are places where plugins are added to the app
 

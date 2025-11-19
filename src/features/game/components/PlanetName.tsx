@@ -1,4 +1,4 @@
-import { withOptionalComponentPlugins } from "@/features/plugins/adapters/adapter-components";
+import { withOptionalComponentPlugins } from "@/features/plugins-core/adapters/adapter-components";
 import { useGameStore } from "../stores/use-game-store";
 
 function PlanetNameComponent() {

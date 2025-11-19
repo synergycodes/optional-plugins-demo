@@ -1,4 +1,4 @@
-import { withOptionalFunctionPlugins } from "@/features/plugins/adapters/adapter-functions";
+import { withOptionalFunctionPlugins } from "@/features/plugins-core/adapters/adapter-functions";
 import type { InfrastructureType, Resources } from "../types";
 
 const buildingCostByType: {

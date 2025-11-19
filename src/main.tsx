@@ -5,7 +5,7 @@ import "./index.css";
 import App from "./App.tsx";
 
 // Plugins entry point
-import "@/features/plugins";
+import "@/features/plugins-core";
 import "@/features/i18n";
 
 createRoot(document.getElementById("root")!).render(

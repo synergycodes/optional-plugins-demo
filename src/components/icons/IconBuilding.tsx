@@ -1,4 +1,4 @@
-import { withOptionalComponentPlugins } from "@/features/plugins/adapters/adapter-components";
+import { withOptionalComponentPlugins } from "@/features/plugins-core/adapters/adapter-components";
 import IconBuildingPowerPlant from "./IconBuildingPowerPlant";
 import IconBuildingResidential from "./IconBuildingResidential";
 

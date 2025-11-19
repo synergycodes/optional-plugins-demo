@@ -2,7 +2,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
 import { resources } from "./locales/config";
-import { withOptionalComponentPluginsTranslation } from "../plugins/adapters/adapter-i18n";
+import { withOptionalComponentPluginsTranslation } from "@/features/plugins-core/adapters/adapter-i18n";
 
 i18n.use(initReactI18next).init({
   resources: withOptionalComponentPluginsTranslation(resources),
