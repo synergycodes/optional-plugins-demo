@@ -16,7 +16,7 @@ export const getScienceBuildingEffects = ({ params }: DecoratorParams) => {
         useGameStore.getState().planet.buildings.powerPlant;
       const powerPlantEffect = getBuildingEffects(
         "powerPlant",
-        powerPlantLevel
+        powerPlantLevel,
       );
 
       // Efficiency can never be higher than 100% for a power plant.

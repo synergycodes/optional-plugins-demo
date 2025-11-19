@@ -1,5 +1,5 @@
-import type { Resources } from "../types";
 import type { Planet } from "../stores/use-game-store";
+import type { Resources } from "../types";
 import { getBuildingEffects } from "./get-building-effects";
 
 export const getPlanetEffects = (planet: Planet): Resources => {
@@ -12,7 +12,7 @@ export const getPlanetEffects = (planet: Planet): Resources => {
 
       return stack;
     },
-    { energy: 0, population: 0 }
+    { energy: 0, population: 0 },
   );
 
   return buildingsBuff;

@@ -1,4 +1,4 @@
-import { registerPluginTranslation } from "@/features/plugins/adapters/adapter-i18n";
+import { registerPluginTranslation } from "@/features/plugins-core/adapters/adapter-i18n";
 
 import localeEn from "./locales/en.json";
 import localePL from "./locales/pl.json";

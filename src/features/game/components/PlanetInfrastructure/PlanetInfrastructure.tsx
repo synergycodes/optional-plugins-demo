@@ -1,4 +1,5 @@
-import { OptionalBuildingCards } from "@/features/plugins/components/OptionalBuildingCards";
+import { OptionalBuildingCards } from "@/features/plugins-core/components/OptionalBuildingCards";
+
 import PlanetBuildingCard from "./PlanetBuildingCard";
 
 function PlanetInfrastructure() {
